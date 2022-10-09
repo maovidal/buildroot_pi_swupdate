@@ -10,6 +10,7 @@ That mechanism considers this:
 To achieve that a redundant approach is implemented with two sets of partitions named A and B. When the device is requested to perform an image update, it will prepare the non working set with the new data and it will restart once the update is completed to use it. If succeded, it will keep track of it to use it across restarts. Otherwise, on a failed update, the device will keep using the set that worked before the update.
 
 [U-Boot][uboot] is needed here to being in charge to decide which set to use.
+
 [SWUpdate][swupdate] on the other hand, is in charge to provide the image update and the webpage interface.
 
 The following partitions will be created on the device's eMMC:
@@ -99,4 +100,5 @@ This software is licensed under MIT License.
 [buildroot]:http://buildroot.uclibc.org/
 [data-only]:https://docs.docker.com/userguide/dockervolumes/
 [br2_external]:http://buildroot.uclibc.org/downloads/manual/manual.html#outside-br-custom
+[uboot]:https://u-boot.readthedocs.io/en/latest/
 [swupdate]:https://sbabic.github.io/swupdate/swupdate.html
