@@ -11,17 +11,17 @@ To achieve that a redundant approach is implemented with two sets of partitions 
 
 [U-Boot][uboot] is needed here to being in charge to decide which set to use.
 
-[SWUpdate][swupdate] on the other hand, is in charge to provide the image update and the webpage interface.
+[SWUpdate][swupdate] on the other hand, is in charge to provide the image update mechanism and the webpage interface.
 
 The following partitions will be created on the device's eMMC:
 
-- persistent: a small non volatile VFAT partition to keep the results of the state / transition of the image and other information that should be kept among restarts.
-- boota_env: An image that contains instructions for U-Boot when the set A is the working one.
-- bootb_env: An image that contains instructions for U-Boot when the set B is the working one.
-- boota: An image that contains the boot information when the set A is the working one.
-- bootb: An image that contains the boot information when the set B is the working one.
-- rootfsa: An image with the root filesystem when the set A is the working one.
-- rootfsb: An image with the root filesystem when the set B is the working one.
+- `boota_env`: An image that contains instructions for U-Boot when the set A is the working one.
+- `bootb_env`: An image that contains instructions for U-Boot when the set B is the working one.
+- `boota`: An image that contains the boot information when the set A is the working one.
+- `bootb`: An image that contains the boot information when the set B is the working one.
+- `persistent`: a small non volatile VFAT partition to keep the results of the state / transition of the image and other information that should be kept among restarts.
+- `rootfsa`: An image with the root filesystem when the set A is the working one.
+- `rootfsb`: An image with the root filesystem when the set B is the working one.
 
 
 # Quick setup
