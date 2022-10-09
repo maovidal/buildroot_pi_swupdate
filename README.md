@@ -2,12 +2,13 @@
 
 The purpose of this repository is to generate an image tested on `buildroot 2022.08.1` that can be flashed on the internal eMMC of the `Raspberry Pi Compute Module 4` providing a mechanism to update its filesystem via a web page.
 
-That mechanism considers this:
+That mechanism considers a redundant approach which is implemented with two sets of partitions named A and B.
 
-- The running device provides a web page that allows it to receive an image update.
-- If the image update does not succeed, the device will keep its current (working) image.
+When the device is running from either of those set of partitions and is requested to perform an image update, it will prepare the set that is not currently in use with the new data received on its webpage and it will restart itself once the update has been completed.
 
-To achieve that a redundant approach is implemented with two sets of partitions named A and B. When the device is requested to perform an image update, it will prepare the non working set with the new data and it will restart once the update is completed to use it. If succeded, it will keep track of it to use it across restarts. Otherwise, on a failed update, the device will keep using the set that worked before the update.
+If succeded, it will keep track of it to use the new set of partitions across restarts. Otherwise, on a failed update, the device will keep using the set that worked before the update.
+
+## Under the hood
 
 [U-Boot][uboot] is needed here to being in charge to decide which set to use.
 
@@ -15,13 +16,13 @@ To achieve that a redundant approach is implemented with two sets of partitions 
 
 The following partitions will be created on the device's eMMC:
 
-- `boota_env`: An image that contains instructions for U-Boot when the set A is the working one.
-- `bootb_env`: An image that contains instructions for U-Boot when the set B is the working one.
-- `boota`: An image that contains the boot information when the set A is the working one.
-- `bootb`: An image that contains the boot information when the set B is the working one.
+- `ubootenv_a`: An image that contains instructions for U-Boot when the set A is the working one.
+- `ubootenv_b`: An image that contains instructions for U-Boot when the set B is the working one.
+- `boot_a`: An image that contains the boot information when the set A is the working one.
+- `boot_b`: An image that contains the boot information when the set B is the working one.
 - `persistent`: a small non volatile VFAT partition to keep the results of the state / transition of the image and other information that should be kept among restarts.
-- `rootfsa`: An image with the root filesystem when the set A is the working one.
-- `rootfsb`: An image with the root filesystem when the set B is the working one.
+- `rootfs_a`: An image with the root filesystem when the set A is the working one.
+- `rootfs_b`: An image with the root filesystem when the set B is the working one.
 
 
 # Quick setup
