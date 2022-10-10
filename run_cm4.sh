@@ -13,13 +13,13 @@ BUILDROOT_DIR=/root/buildroot
 DOCKER_RUN="docker run
     --rm
     -ti
-    --volumes-from br_output_US_CM4
+    --volumes-from br_output_PiSWU_CM4
     -v $(pwd)/.ssh:/root/.ssh
     -v $(pwd)/externals:$BUILDROOT_DIR/externals
     -v $(pwd)/rootfs_overlay:$BUILDROOT_DIR/rootfs_overlay
-    -v $(pwd)/images/uboot_swupdate/cm4:$OUTPUT_DIR/images
-    -v $(pwd)/target/uboot_swupdate/cm4:$OUTPUT_DIR/target
-    -v $(pwd)/graphs/uboot_swupdate/cm4:$OUTPUT_DIR/graphs
+    -v $(pwd)/images/pi_swupdate/cm4:$OUTPUT_DIR/images
+    -v $(pwd)/target/pi_swupdate/cm4:$OUTPUT_DIR/target
+    -v $(pwd)/graphs/pi_swupdate/cm4:$OUTPUT_DIR/graphs
     advancedclimatesystems/buildroot"
 
 make() {
