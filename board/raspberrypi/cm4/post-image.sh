@@ -5,7 +5,6 @@ set -e
 BOARD_DIR="$(dirname $0)"
 BOARD_NAME="$(basename ${BOARD_DIR})"
 GENIMAGE_CFG="${BOARD_DIR}/genimage_fullfs.cfg"
-GENBOOTFS_CFG="${BOARD_DIR}/genimage_bootfs.cfg"
 GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
 # Pass an empty rootpath. genimage makes a full copy of the given rootpath to
@@ -15,20 +14,6 @@ GENIMAGE_TMP="${BUILD_DIR}/genimage.tmp"
 
 trap 'rm -rf "${ROOTPATH_TMP}"' EXIT
 ROOTPATH_TMP="$(mktemp -d)"
-
-rm -rf "${GENIMAGE_TMP}"
-
-# Generate the boot filesystem image
-
-genimage \
-	--rootpath "${ROOTPATH_TMP}"   \
-	--tmppath "${GENIMAGE_TMP}"    \
-	--inputpath "${BINARIES_DIR}"  \
-	--outputpath "${BINARIES_DIR}" \
-	--config "${GENBOOTFS_CFG}"
-
-
-# Generate the full sdcard image
 
 rm -rf "${GENIMAGE_TMP}"
 

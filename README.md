@@ -10,14 +10,14 @@ If succeded, it will keep track of it to use the new set of partitions across re
 
 ## Under the hood
 
-[U-Boot][uboot] is needed here to being in charge to decide which set to use.
+[tryboot][tryboot] is a Raspberry Pi native mechanism responsible to switch partitions at boot time when asked by a previous reboot.
 
-[SWUpdate][swupdate] on the other hand, is in charge to provide the image update mechanism and the webpage interface.
+[SWUpdate][swupdate] on the other hand, is in charge of providing:
+- A webpage to receive the new image.
+- The update mechanism including its completion (making it permanent) once restarted and proved correct.
 
 The following partitions will be created on the device's eMMC:
 
-- `ubootenv_a`: An image that contains instructions for U-Boot when the set A is the working one.
-- `ubootenv_b`: An image that contains instructions for U-Boot when the set B is the working one.
 - `boot_a`: An image that contains the boot information when the set A is the working one.
 - `boot_b`: An image that contains the boot information when the set B is the working one.
 - `persistent`: a small non volatile VFAT partition to keep the results of the state / transition of the image and other information that should be kept among restarts.
@@ -101,5 +101,6 @@ This software is licensed under MIT License.
 [buildroot]:http://buildroot.uclibc.org/
 [data-only]:https://docs.docker.com/userguide/dockervolumes/
 [br2_external]:http://buildroot.uclibc.org/downloads/manual/manual.html#outside-br-custom
+[tryboot]:https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#fail-safe-os-updates-tryboot
 [uboot]:https://u-boot.readthedocs.io/en/latest/
 [swupdate]:https://sbabic.github.io/swupdate/swupdate.html

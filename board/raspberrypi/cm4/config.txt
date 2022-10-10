@@ -20,8 +20,7 @@ start_file=start4.elf
 fixup_file=fixup4.dat
 
 # Load U-Boot instead of Linux
-kernel=u-boot.bin
-# kernel=Image
+kernel=Image
 
 # To use an external initramfs file
 # initramfs rootfs.cpio.gz

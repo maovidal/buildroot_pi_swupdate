@@ -63,7 +63,7 @@ BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_US_CFG_PATH)/board/raspberrypi/cm4/overlay"
 
 
 # ##############################################################################
-# Other
+# Identification
 # ##############################################################################
 
 # Root password
@@ -73,38 +73,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for U-Boot* ver 0.0.1"
-
-
-# ##############################################################################
-# U-Boot related
-# ##############################################################################
-
-# BR2_LINUX_KERNEL_CUSTOM_DTS_PATH="$(BR2_EXTERNAL_US_CFG_PATH)/board/raspberry/cm4/dts/bcm2711-rpi-cm4.dts $(BR2_EXTERNAL_US_CFG_PATH)/board/raspberry/cm4/dts/custom-cm4.dtsi"
-BR2_LINUX_KERNEL_INSTALL_TARGET=y
-# BR2_PACKAGE_BUSYBOX_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_US_CFG_PATH)/board/raspberry/cm4/busybox.fragment"
-
-# dtc (libfdt) Flat Device Trees manipulation library
-# BR2_PACKAGE_DTC=y
-# BR2_PACKAGE_DTC_PROGRAMS=y
-
-# Read only file system
-# BR2_TARGET_ROOTFS_SQUASHFS=y
-
-BR2_TARGET_UBOOT=y
-BR2_TARGET_UBOOT_BOARD_DEFCONFIG="rpi_arm64"
-BR2_TARGET_UBOOT_BUILD_SYSTEM_KCONFIG=y
-BR2_TARGET_UBOOT_CONFIG_FRAGMENT_FILES="$(BR2_EXTERNAL_US_CFG_PATH)/board/raspberrypi/cm4/u-boot.fragment"
-
-# Environment-setup script installed in output/host/ and therefore in your SDK.
-# BR2_PACKAGE_HOST_ENVIRONMENT_SETUP=y
-
-BR2_PACKAGE_HOST_UBOOT_TOOLS=y
-BR2_PACKAGE_HOST_UBOOT_TOOLS_ENVIMAGE=y
-BR2_PACKAGE_HOST_UBOOT_TOOLS_ENVIMAGE_SIZE="0x8000"
-BR2_PACKAGE_HOST_UBOOT_TOOLS_ENVIMAGE_REDUNDANT=y
-BR2_PACKAGE_HOST_UBOOT_TOOLS_BOOT_SCRIPT=y
-BR2_PACKAGE_HOST_UBOOT_TOOLS_BOOT_SCRIPT_SOURCE="$(BR2_EXTERNAL_BR2RAUC_PATH)/board/raspberrypi/cm4/u-boot.ush"
+BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.1"
 
 
 # ##############################################################################
