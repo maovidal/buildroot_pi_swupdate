@@ -63,7 +63,7 @@ BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/cm4/overlay
 
 
 # ##############################################################################
-# Identification
+# Identification and development utilities
 # ##############################################################################
 
 # Root password
@@ -73,7 +73,12 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.1"
+BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.2"
+
+# Utilities
+BR2_PACKAGE_NANO=y
+BR2_PACKAGE_DROPBEAR=y  # SSH
+BR2_PACKAGE_DHCPCD=y
 
 
 # ##############################################################################
