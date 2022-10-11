@@ -1,3 +1,14 @@
+# ⚠️ This is a work in progress ⚠️
+
+This is not yet functional. Currently none neither the `tryboot` mechanism nor `SWUpdate` are working:
+
+- `tryboot` always boots from the `A` set.
+- `SWUpdate` is expected to be implemented (once `tryboot` works) using as a reference an internal working project.
+
+If you would like to help, please drop me a message creating an Issue.
+Thanks!
+
+
 # Description
 
 The purpose of this repository is to generate an image tested on `buildroot 2022.08.1` that can be flashed on the internal eMMC of the `Raspberry Pi Compute Module 4` providing a mechanism to update its filesystem via a web page.
@@ -7,6 +18,7 @@ That mechanism considers a redundant approach which is implemented with two sets
 When the device is running from either of those set of partitions and is requested to perform an image update, it will prepare the set that is not currently in use with the new data received on its webpage and it will restart itself once the update has been completed.
 
 If succeded, it will keep track of it to use the new set of partitions across restarts. Otherwise, on a failed update, the device will keep using the set that worked before the update.
+
 
 ## Under the hood
 
