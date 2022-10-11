@@ -20,3 +20,6 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_
 # Those don't provide an special function compared to the original config.
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
+
+# An indicator for the empty partition
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/empty ${BINARIES_DIR}/persistent/.empty
