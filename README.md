@@ -1,8 +1,8 @@
 # ⚠️ This is a work in progress ⚠️
 
-This is not yet functional. Currently none neither the `tryboot` mechanism nor `SWUpdate` are working:
+This is not yet functional. Currently neither the `tryboot` mechanism nor `SWUpdate` are working:
 
-- `tryboot` always boots from the `A` set.
+- `Tryboot` always boots from the `A` set.
 - `SWUpdate` is expected to be implemented (once `tryboot` works) using as a reference an internal working project.
 
 If you would like to help, please drop me a message creating an Issue.
