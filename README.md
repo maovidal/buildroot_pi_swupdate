@@ -5,8 +5,50 @@ This is not yet functional. Currently neither the `tryboot` mechanism nor `SWUpd
 - `Tryboot` always boots from the `A` set.
 - `SWUpdate` is expected to be implemented (once `tryboot` works) using as a reference an internal working project.
 
-If you would like to help, please drop me a message creating an Issue.
-Thanks!
+There are 2 components to test: which `boot` and which `rootfs` the device loads when a `reboot` as been issued.
+
+The following test were expected to result, however the `CM4` always loads from `boot_a`:
+
+
+1. On the first boot, it is expected that the `CM4` boots from `boot_a`.
+
+To check it, in a terminal, `ls /dev/ttyAMA*` should report only `/dev/ttyAMA1` as `config.txt` from `boot_a` only enables `UART 1`.
+
+2. Rebooting it with `reboot 2` should load the `boot_b`.
+
+Now, `ls /dev/ttyAMA*` should report only `/dev/ttyAMA2` as `config.txt` from `boot_b` only enables `UART 2`.
+
+3. Now, rebooting it with `reboot '1 tryboot'` should load the `boot_a` with a `tryboot.txt` that ENABLES booth `UART 1` and  `UART 2`.
+
+That can be checked with `ls /dev/ttyAMA*` that should report `/dev/ttyAMA1` and `/dev/ttyAMA2`.
+
+4. Finally, rebooting it with `reboot '2 tryboot'` should load the `boot_b` with a `tryboot.txt` that DISABLES booth `UART 1` and  `UART 2`.
+
+That can be checked with `ls /dev/ttyAMA*` that should report nothing.
+
+
+The current `rootfs` can be checked with `lsblk`, that in the case of the `rootfs_a` its mountpoint is marked with `/` for the `mmcblk0p5`:
+
+```
+NAME         MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+mmcblk0      179:0    0 29.1G  0 disk 
+|-mmcblk0p1  179:1    0   64M  0 part /boot_a
+|-mmcblk0p2  179:2    0   64M  0 part /boot_b
+|-mmcblk0p3  179:3    0    1M  0 part 
+|-mmcblk0p4  179:4    0    1K  0 part 
+|-mmcblk0p5  179:5    0  512M  0 part /
+`-mmcblk0p6  179:6    0  512M  0 part 
+mmcblk0boot0 179:32   0    4M  1 disk 
+mmcblk0boot1 179:64   0    4M  1 disk 
+```
+
+Naturally, if `rootfs_b` were loaded, that `/` would be associated to the `mmcblk0p6` partition.
+
+Sadly, none of the `reboot` instructions is wroking as expected.
+
+If you would like to help, please drop me a message creating an Issue or with a message in this post: https://forums.raspberrypi.com/viewtopic.php?p=2045449#p2045449
+
+Thank you!
 
 
 # Description

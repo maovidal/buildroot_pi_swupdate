@@ -73,7 +73,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.3"
+BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.4"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files

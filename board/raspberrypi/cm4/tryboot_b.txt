@@ -7,6 +7,15 @@
 #
 # From Buildroot's original config_cm4io_64bit.txt 2022.08.1
 #
+# Version for Set A to test development.
+#
+# Identical to the one for Set A, except that this DISABLES both uarts
+# for the RS485.
+# Those should NO appear available on /dev/ttyAMA1 and /dev/ttyAMA2
+# for this Set.
+# This confirms that the Boot loaded from the partition `boot_b` using
+# the mechanism `tryboot`.
+#
 # ##############################################################################
 
 
@@ -56,7 +65,7 @@ arm_64bit=1
 
 # RS 485
 # dtoverlay=uart3
-dtoverlay=uart5
+# dtoverlay=uart5
 
 
 # ##############################################################################
@@ -70,4 +79,4 @@ max_framebuffers=2
 # Enable early debugging info
 # uart_2ndstage=1
 
-PARTITION=6
+# PARTITION=6

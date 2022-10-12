@@ -7,6 +7,13 @@
 #
 # From Buildroot's original config_cm4io_64bit.txt 2022.08.1
 #
+# Version for Set A to test development.
+#
+# Identical to the one for Set B, except that this enables a different
+# UART for the RS485.
+# That should appear available on /dev/ttyAMA1 for this Set.
+# This confirms that the Boot loaded from the partition `boot_a`.
+#
 # ##############################################################################
 
 

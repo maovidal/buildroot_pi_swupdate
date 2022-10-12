@@ -10,7 +10,7 @@ if [ -e ${TARGET_DIR}/etc/inittab ]; then
 tty1::respawn:/sbin/getty -L  tty1 0 vt100 # HDMI console' ${TARGET_DIR}/etc/inittab
 fi
 
-# Every boot image receive a custom cmdline.txt, config.txt and tryboot.txt
+# Every boot image receives a custom cmdline.txt, config.txt and tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_a.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_b.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
 
