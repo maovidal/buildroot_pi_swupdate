@@ -28,7 +28,7 @@ BR2_LINUX_KERNEL_NEEDS_HOST_OPENSSL=y
 
 BR2_PACKAGE_RPI_FIRMWARE=y
 BR2_PACKAGE_RPI_FIRMWARE_VARIANT_PI4=y
-BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/cm4/config.txt"
+BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/cm4/config_a.txt"
 
 # Required tools to create the SD image
 BR2_PACKAGE_HOST_DOSFSTOOLS=y
@@ -73,7 +73,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.2"
+BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.3"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files

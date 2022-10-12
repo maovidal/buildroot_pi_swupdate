@@ -10,16 +10,29 @@ if [ -e ${TARGET_DIR}/etc/inittab ]; then
 tty1::respawn:/sbin/getty -L  tty1 0 vt100 # HDMI console' ${TARGET_DIR}/etc/inittab
 fi
 
-# Every boot image receive a custom cmdline.txt
-# Each points to its own rootfs partition.
+# Every boot image receive a custom cmdline.txt, config.txt and tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_a.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_b.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
 
-# A tryboot.txt for each set of partitions is also provided in order to
-# have available the tryboot mechanism.
-# Those don't provide an special function compared to the original config.
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config_a.txt ${BINARIES_DIR}/rpi-firmware_a/config.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config_b.txt ${BINARIES_DIR}/rpi-firmware_b/config.txt
+
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
 # An indicator for the empty partition
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/empty ${BINARIES_DIR}/persistent/.dummy
+
+
+# Mount partitions
+if [ -e ${TARGET_DIR}/etc/fstab ]; then
+	# Boot_A
+	grep -qE '/dev/mmcblk0p1' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p1 /boot_a vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	# Boot_B
+	grep -qE '/dev/mmcblk0p2' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p2 /boot_b vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	# Persistent
+	grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+fi

@@ -56,7 +56,7 @@ arm_64bit=1
 
 # RS 485
 dtoverlay=uart3
-dtoverlay=uart5
+# dtoverlay=uart5
 
 
 # ##############################################################################
@@ -69,3 +69,5 @@ max_framebuffers=2
 
 # Enable early debugging info
 # uart_2ndstage=1
+
+PARTITION=5
