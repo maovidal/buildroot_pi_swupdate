@@ -27,12 +27,12 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty
 # Mount partitions
 if [ -e ${TARGET_DIR}/etc/fstab ]; then
 	# Boot_A
-	grep -qE '/dev/mmcblk0p5' ${TARGET_DIR}/etc/fstab || \
-	echo "/dev/mmcblk0p5 /boot_a vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	grep -qE '/dev/mmcblk0p1' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p1 /boot_a vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 	# Boot_B
-	grep -qE '/dev/mmcblk0p7' ${TARGET_DIR}/etc/fstab || \
-	echo "/dev/mmcblk0p7 /boot_b vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
-	# Persistent
 	grep -qE '/dev/mmcblk0p2' ${TARGET_DIR}/etc/fstab || \
-	echo "/dev/mmcblk0p2 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	echo "/dev/mmcblk0p2 /boot_b vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	# Persistent
+	grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 fi
