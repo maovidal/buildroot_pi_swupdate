@@ -79,4 +79,5 @@ max_framebuffers=2
 # Enable early debugging info
 # uart_2ndstage=1
 
-# PARTITION=5
+# The next does not belong to this file. Left to remind about it
+# PARTITION=2
