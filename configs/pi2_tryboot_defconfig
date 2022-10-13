@@ -44,7 +44,7 @@ BR2_TARGET_ROOTFS_EXT2_4=y
 BR2_TARGET_ROOTFS_EXT2_SIZE="512M"
 # BR2_TARGET_ROOTFS_TAR is not set
 BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/post-build_tryboot.sh"
-BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/post-image.sh"
+BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/post-image_tryboot.sh"
 
 
 # ##############################################################################
@@ -73,7 +73,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 device *Preliminar to test support for tryboot* ver 0.0.5"
+BR2_TARGET_GENERIC_ISSUE="Pi2B *Preliminar to test support for tryboot* ver 0.0.5"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files

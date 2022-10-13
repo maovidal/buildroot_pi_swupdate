@@ -152,28 +152,28 @@ Buildroot downloads all data to the first volume, the last volume is used as bui
 - For the `Pi2`, tryboot version:
 
 ``` shell
-./externals/pi_swupdate/run_pi2_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig
+./externals/pi_swupdate/run_pi2_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig && \
 ./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_tryboot_defconfig
 ```
 
 - For the `Pi2`, autoboot version:
 
 ``` shell
-./externals/pi_swupdate/run_pi2_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig
+./externals/pi_swupdate/run_pi2_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig && \
 ./externals/pi_swupdate/run_pi2_autoboot.sh make pi2_autoboot_defconfig
 ```
 
 - For the `CM4`, tryboot version:
 
 ``` shell
-./externals/pi_swupdate/run_cm4_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig
+./externals/pi_swupdate/run_cm4_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig && \
 ./externals/pi_swupdate/run_cm4_tryboot.sh make cm4_tryboot_defconfig
 ```
 
 - For the `CM4`, autoboot version:
 
 ``` shell
-./externals/pi_swupdate/run_cm4_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig
+./externals/pi_swupdate/run_cm4_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate menuconfig && \
 ./externals/pi_swupdate/run_cm4_autoboot.sh make cm4_autoboot_defconfig
 ```
 
