@@ -1,6 +1,7 @@
 #!/bin/bash
 # Start container and start process inside container.
-# Specific for U-Boot SWUpdate running of Raspberry Pi Compute Module 4
+# Specific for SWUpdate running of Raspberry Pi Compute Module 4 based on the
+# Autoboot mechanism.
 set -e
 
 OUTPUT_DIR=/buildroot_output
@@ -13,13 +14,13 @@ BUILDROOT_DIR=/root/buildroot
 DOCKER_RUN="docker run
     --rm
     -ti
-    --volumes-from br_output_PiSWU_CM4
+    --volumes-from br_output_PiSWU_CM4_autoboot
     -v $(pwd)/.ssh:/root/.ssh
     -v $(pwd)/externals:$BUILDROOT_DIR/externals
     -v $(pwd)/rootfs_overlay:$BUILDROOT_DIR/rootfs_overlay
-    -v $(pwd)/images/pi_swupdate/cm4:$OUTPUT_DIR/images
-    -v $(pwd)/target/pi_swupdate/cm4:$OUTPUT_DIR/target
-    -v $(pwd)/graphs/pi_swupdate/cm4:$OUTPUT_DIR/graphs
+    -v $(pwd)/images/pi_swupdate/cm4_autoboot:$OUTPUT_DIR/images
+    -v $(pwd)/target/pi_swupdate/cm4_autoboot:$OUTPUT_DIR/target
+    -v $(pwd)/graphs/pi_swupdate/cm4_autoboot:$OUTPUT_DIR/graphs
     advancedclimatesystems/buildroot"
 
 make() {

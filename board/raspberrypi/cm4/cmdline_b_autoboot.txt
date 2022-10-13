@@ -1,0 +1,1 @@
+root=/dev/mmcblk0p8 rootwait console=tty1 console=ttyAMA0,115200 sdhci.debug_quirks2=4
