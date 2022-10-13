@@ -21,7 +21,7 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
 # An indicator for the empty partition
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/empty ${BINARIES_DIR}/persistent/.dummy
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty ${BINARIES_DIR}/persistent/.dummy
 
 
 # Mount partitions
