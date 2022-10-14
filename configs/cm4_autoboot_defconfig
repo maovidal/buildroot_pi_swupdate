@@ -1,6 +1,6 @@
 # ##############################################################################
 # Based on the default `raspberrypicm4io_64_defconfig` of the buildroot
-# `2022.08.1`. Tested in `2022.08.1`
+# `2022.08.1`. Tested in `2022.08.1`.
 # ##############################################################################
 
 
@@ -59,7 +59,7 @@ BR2_TARGET_TZ_INFO=y
 BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
 
 # Overlays
-BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay $(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay_autoboot"
 
 
 # ##############################################################################
