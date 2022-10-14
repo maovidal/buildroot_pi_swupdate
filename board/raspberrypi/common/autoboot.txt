@@ -1,1 +1,1 @@
-boot_partition=3
+boot_partition=2
