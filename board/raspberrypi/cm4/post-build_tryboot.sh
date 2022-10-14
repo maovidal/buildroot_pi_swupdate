@@ -10,6 +10,9 @@ if [ -e ${TARGET_DIR}/etc/inittab ]; then
 tty1::respawn:/sbin/getty -L  tty1 0 vt100 # HDMI console' ${TARGET_DIR}/etc/inittab
 fi
 
+# An indicator for the empty partition
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty ${BINARIES_DIR}/persistent/.dummy
+
 # Every boot image receives a custom cmdline.txt, config.txt and tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_a_tryboot.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/cmdline_b_tryboot.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
@@ -19,9 +22,6 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/config_b
 
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/cm4/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
-
-# An indicator for the empty partition
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty ${BINARIES_DIR}/persistent/.dummy
 
 
 # Mount partitions

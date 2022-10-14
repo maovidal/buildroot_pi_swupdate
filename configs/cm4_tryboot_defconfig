@@ -1,6 +1,6 @@
 # ##############################################################################
 # Based on the default `raspberrypicm4io_64_defconfig` of the buildroot
-# `2022.08.1`. Tested in `2022.08.1`
+# `2022.08.1`. Tested in `2022.08.1`.
 # ##############################################################################
 
 
@@ -73,7 +73,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 *Preliminar to test support for tryboot* ver 0.0.5"
+BR2_TARGET_GENERIC_ISSUE="CM4 based on tryboot ver 0.1.0 - No working yet"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files
