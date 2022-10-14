@@ -1,6 +1,6 @@
 # ##############################################################################
 # Based on the default `raspberrypi2_defconfig` of the buildroot
-# `2022.08.1`. Tested in `2022.08.1`
+# `2022.08.1`. Tested in `2022.08.1`.
 # ##############################################################################
 
 
@@ -58,7 +58,7 @@ BR2_TARGET_TZ_INFO=y
 BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
 
 # Overlays
-BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay $(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay_autoboot"
 
 
 # ##############################################################################
@@ -72,7 +72,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="Pi2B *Preliminar to test support for autoboot* ver 0.0.5"
+BR2_TARGET_GENERIC_ISSUE="Pi2B based on autoboot ver 0.1.0 - No booting yet"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files
