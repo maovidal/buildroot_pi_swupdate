@@ -22,7 +22,4 @@ gpu_mem_256=100
 gpu_mem_512=100
 gpu_mem_1024=100
 
-
-# Temporal, during development
-uart_2ndstage=1
-enable_uart=1
+os_prefix=b/

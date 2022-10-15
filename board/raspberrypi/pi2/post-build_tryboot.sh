@@ -20,8 +20,8 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_a/config.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_b/config.txt
 
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
 
 # Mount partitions
@@ -32,7 +32,7 @@ if [ -e ${TARGET_DIR}/etc/fstab ]; then
 	# Boot_B
 	grep -qE '/dev/mmcblk0p2' ${TARGET_DIR}/etc/fstab || \
 	echo "/dev/mmcblk0p2 /boot_b vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
-	# Persistent
-	grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
-	echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	# # Persistent
+	# grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
+	# echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 fi
