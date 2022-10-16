@@ -25,3 +25,6 @@ gpu_mem_1024=100
 # Temporal, to be used during development to debug from a UART terminal
 uart_2ndstage=1
 enable_uart=1
+
+# fixes rpi (3B, 3B+, 3A+, 4B and Zero W) ttyAMA0 serial console
+dtoverlay=miniuart-bt

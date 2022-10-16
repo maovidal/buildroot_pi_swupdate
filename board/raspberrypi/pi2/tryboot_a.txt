@@ -1,4 +1,10 @@
+# Loads original config.txt
 include config.txt
 
-# For debug purposes. This will load the rootfs from the B set
+
+# ##############################################################################
+# Next for debug purposes.
+# ##############################################################################
+
+# This will load the rootfs from the B set
 cmdline=cmdline_from_b.txt
