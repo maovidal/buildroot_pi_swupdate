@@ -1,0 +1,8 @@
+config BR2_PACKAGE_REBOOTP
+        bool "rebootp"
+    ### build dependencies
+    ### runtime dependencies
+        help
+          modified reboot to a given partition based on PINN's rebootp
+          Original at:
+          https://github.com/procount/pinn/tree/master/buildroot/package/rebootp

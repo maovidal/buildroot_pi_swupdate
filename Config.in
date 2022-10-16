@@ -1,0 +1,1 @@
+source "$BR2_EXTERNAL_PISWU_CFG_PATH/package/rebootp/Config.in"
