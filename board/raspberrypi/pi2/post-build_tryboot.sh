@@ -13,12 +13,15 @@ fi
 # An indicator for the empty partition
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty ${BINARIES_DIR}/persistent/.dummy
 
+# Base config.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config_base.txt ${BINARIES_DIR}/config_base.txt
+
 # Every boot image receives a custom cmdline.txt, config.txt and tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_a.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_b.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
 
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_a/config.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_b/config.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config_a.txt ${BINARIES_DIR}/rpi-firmware_a/config.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config_b.txt ${BINARIES_DIR}/rpi-firmware_b/config.txt
 
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt

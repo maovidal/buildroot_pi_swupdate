@@ -6,5 +6,4 @@ include config_base.txt
 # Next for debug purposes.
 # ##############################################################################
 
-# This will load the rootfs from the B set
-cmdline=cmdline_from_b.txt
+# You can set/overwrite settings when loading from B boot.

@@ -1,5 +1,5 @@
-# Loads original config.txt
-include config.txt
+# Loads base config.txt
+include config_base.txt
 
 
 # ##############################################################################
