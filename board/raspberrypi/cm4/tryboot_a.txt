@@ -1,83 +1,15 @@
-# ##############################################################################
-#
-# Configuration tested for:
-# Raspberry Pi Compute Module 4, 4GB, 32 eMMC, Wireless
-# on Waveshare CM4-IO-Wireless-Base.
-# It should work also on the original IO board.
-#
-# From Buildroot's original config_cm4io_64bit.txt 2022.08.1
-#
-# Version for Set A to test development.
-#
-# Identical to the one for Set B, except that this ENABLES both uarts
-# for the RS485.
-# Those should appear available on /dev/ttyAMA1 and /dev/ttyAMA2 for this Set.
-#
-# This confirms that the Boot loaded from the partition `boot_a` using
-# the mechanism `tryboot`.
-#
-# ##############################################################################
-
-
-# Please note that this is only a sample, we recommend you to change it to fit
-# your needs.
-# You should override this file using BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE.
-# See http://buildroot.org/manual.html#rootfs-custom
-# and http://elinux.org/RPiconfig for a description of config.txt syntax
-
-start_file=start4.elf
-fixup_file=fixup4.dat
-
-# Load Linux
-kernel=Image
-
-# To use an external initramfs file
-# initramfs rootfs.cpio.gz
-
-# Disable overscan assuming the display supports displaying the full resolution
-# If the text shown on the screen disappears off the edge, comment this out
-disable_overscan=1
-
-# How much memory in MB to assign to the GPU on Pi models having
-# 256, 512 or 1024 MB total memory
-gpu_mem_256=128
-gpu_mem_512=128
-gpu_mem_1024=128
-
-# fixes rpi (3B, 3B+, 3A+, 4B and Zero W) ttyAMA0 serial console
-dtoverlay=miniuart-bt
-
-# enable RTC
-dtparam=i2c_vc=on
-dtoverlay=i2c-rtc,pcf85063a,i2c_csi_dsi
-
-# enable dwc2 USB controller (USB 2.0)
-dtoverlay=dwc2,dr_mode=host
-
-# enable 64bits support
-arm_64bit=1
+# Loads original config.txt
+include config.txt
 
 
 # ##############################################################################
-# Required to support Waveshare hardware board:
-# https://www.waveshare.com/wiki/CM4-IO-WIRELESS-BASE
+# Next for debug purposes.
 # ##############################################################################
 
-# RS 485
-dtoverlay=uart3
-dtoverlay=uart5
+# This will load the rootfs from the B set
+cmdline=cmdline_from_b.txt
 
-
-# ##############################################################################
-# Additional
-# ##############################################################################
-
-# Graphics
-dtoverlay=vc4-kms-v3d-pi4
-max_framebuffers=2
-
-# Enable early debugging info
-# uart_2ndstage=1
-
-# The next does not belong to this file. Left to remind about it
-# PARTITION=2
+# And if the board used is https://www.waveshare.com/wiki/CM4-IO-WIRELESS-BASE
+# Both RS 485 should NOT appear available at /dev/ttyAMA1 and /dev/ttyAMA2
+# dtoverlay=uart3
+# dtoverlay=uart5
