@@ -1,4 +1,4 @@
-# Loads original config.txt
+# Loads base config.txt
 include config_base.txt
 
 
