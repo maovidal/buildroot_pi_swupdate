@@ -14,14 +14,14 @@ fi
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/autoboot.txt ${BINARIES_DIR}/autoboot.txt
 
 # Every boot image receives a custom cmdline.txt, config.txt and tryboot.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_a_autoboot.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_b_autoboot.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_a.txt ${BINARIES_DIR}/rpi-firmware_a/cmdline.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/cmdline_b.txt ${BINARIES_DIR}/rpi-firmware_b/cmdline.txt
 
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_a/config.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_b/config.txt
 
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
 
 # Mount partitions

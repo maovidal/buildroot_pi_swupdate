@@ -41,7 +41,7 @@ BR2_PACKAGE_HOST_MTOOLS=y
 # Filesystem / image
 BR2_TARGET_ROOTFS_EXT2=y
 BR2_TARGET_ROOTFS_EXT2_4=y
-BR2_TARGET_ROOTFS_EXT2_SIZE="512M"
+BR2_TARGET_ROOTFS_EXT2_SIZE="256M"
 # BR2_TARGET_ROOTFS_TAR is not set
 BR2_ROOTFS_POST_BUILD_SCRIPT="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/post-build_autoboot.sh"
 BR2_ROOTFS_POST_IMAGE_SCRIPT="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/post-image_autoboot.sh"
@@ -72,7 +72,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="Pi2B based on autoboot ver 0.1.0 - No booting yet"
+BR2_TARGET_GENERIC_ISSUE="Pi2B to test autoboot ver 0.1.1a - Testing"
 
 # Utilities
 BR2_PACKAGE_NANO=y  # Edit files
@@ -82,6 +82,8 @@ BR2_PACKAGE_DHCPCD=y
 BR2_PACKAGE_PARTED=y  # Parted, the GNU partition resizing program
 BR2_PACKAGE_UTIL_LINUX=y
 BR2_PACKAGE_UTIL_LINUX_BINARIES=y  # Install the basic set of util-linux binaries, including lsblk
+
+BR2_PACKAGE_REBOOTP=y
 
 
 # ##############################################################################
