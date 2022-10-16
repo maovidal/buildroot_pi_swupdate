@@ -32,7 +32,7 @@ if [ -e ${TARGET_DIR}/etc/fstab ]; then
 	# Boot_B
 	grep -qE '/dev/mmcblk0p2' ${TARGET_DIR}/etc/fstab || \
 	echo "/dev/mmcblk0p2 /boot_b vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
-	# # Persistent
-	# grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
-	# echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
+	# Persistent
+	grep -qE '/dev/mmcblk0p3' ${TARGET_DIR}/etc/fstab || \
+	echo "/dev/mmcblk0p3 /persistent vfat defaults,noatime 0 0" >> ${TARGET_DIR}/etc/fstab
 fi

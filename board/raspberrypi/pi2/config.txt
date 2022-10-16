@@ -22,7 +22,6 @@ gpu_mem_256=100
 gpu_mem_512=100
 gpu_mem_1024=100
 
-
-# Temporal, during development
+# Temporal, to be used during development to debug from a UART terminal
 uart_2ndstage=1
 enable_uart=1
