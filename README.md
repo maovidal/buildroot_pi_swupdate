@@ -31,18 +31,24 @@ git clone https://github.com/maovidal/buildroot_pi_swupdate externals/pi_swupdat
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-2. Setup each [data-only containers][data-only] for the board and mechanism you want to use:
-
-Note that:
+2. Setup each [data-only containers][data-only] for the board and mechanism you want to use. Please note that:
 
 - You can setup all of them and even run them simultaneously (Provided your hardware has enough resources to allow it).
+
 - Each `data-only container` will contain 2 volumes at `/root/buildroot/dl` and `/buildroot_output`.
+
 - To tell the `Builroot container` which `data-only container` to use, one helper script is provided for every `x` board and `y` mechanism named `scripts_x_y.sh` (Those scripts are described in the next section in this document).
+
 - `Buildroot` downloads all data to the first volume, the last volume is used as build cache, cross compiler and build results organized like this:
+
     - `externals/pi_swupdate/x_y`: the new external folder with the configs and other related files.
     - `images/pi_swupdate/x_y`: with your valuable results.
     - Also, the `target/pi_swupdate/x_y` folder is provided just to ease checking the building process.
+
 - `name` will be used on the scripts to refer to this specific build.
+
+
+These are the available options:
 
 * For the `Pi2` using the `tryboot` mechanism:
 
@@ -119,11 +125,11 @@ The update mechanism is provided by [SWUpdate][swupdate] with those particular f
 - A webpage to receive the new image.
 - The update mechanism including its completion (making it permanent) once restarted and proved correct.
 
-However, the reboot mechanism is provided with a custom `rebootp` command implemented originally by the PINN project[PINN_rebootp] because the original `reboot` command does not inject the partition number required with the approach of this repository.
+The reboot mechanism is provided by a custom `rebootp` command implemented originally by the [PINN project][PINN_rebootp] because the original `reboot` command does not inject the partition number required to switch partitions.
 
-The `autoboot` mechanism is used to allow `SWUpdate` to set the new partition to be used by the `Pi` once it has been proved to run successfully upon reboot.
+The `autoboot` mechanism is used to allow `SWUpdate` to update the new partition to be used by the `Pi` once it has been proved to run successfully upon reboot.
 
-While the `tryboot` is not used, during development was something considered. That is why a `vanilla` version (with no `SWUpdate`) to test this mechanism is available on this repo an another version for testing the `autoboot` is available as well. Here are their details:
+While the `tryboot` is not used, during development was something considered. That is why a `vanilla` version (with no `SWUpdate`) to test this mechanism is available on this repo and another version for testing the `autoboot` is available as well. Here there are their details:
 
 
 ## Under the hood of the versions based on `tryboot`.
