@@ -46,76 +46,63 @@ docker build -t "advancedclimatesystems/buildroot" .
     - Also, the `target/pi_swupdate/x_y` folder is provided just to ease checking the building process.
 
 - `name` will be used on the scripts to refer to this specific build.
+- The commands below call 3 times those scripts to achieve this:
+
+    - Create a data-only container
+    - Set the external mechanism and returns a the value to confirm it has been recorded
+    - Set the default configuration
 
 
-These are the available options:
+These are the commands for the available options:
 
 * For the `Pi2` with `SWUpdate` support:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on Pi2."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_pi2.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate pi2_defconfig
+docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on Pi2."  && \
+./externals/pi_swupdate/run_pi2.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make pi2_defconfig
 ```
 
 * For the `CM4` with `SWUpdate` support:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on CM4."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_cm4.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate cm4_defconfig
+docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on CM4." && \
+./externals/pi_swupdate/run_cm4.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make cm4_defconfig
 ```
 
-The next are meant to test the `tryboot` and/or the `autoboot` mechanisms. Those don't offer `SWUpdate` support.
+The next are meant to just test the `tryboot` and/or the `autoboot` mechanisms. Those don't offer `SWUpdate` support.
 
 * For the `Pi2` using the `tryboot` mechanism:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on Pi2 - Based on tryboot mechanism."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_pi2_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate pi2_tryboot_defconfig
+docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Data only to test tryboot mechanism on Pi2." && \
+./externals/pi_swupdate/run_pi2_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make pi2_tryboot_defconfig
 ```
 
 * For the `Pi2` using the `autoboot` mechanism:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on Pi2 - Based on autoboot mechanism."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_pi2_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate pi2_autoboot_defconfig
+docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Data only to test autoboot mechanism on Pi2." && \
+./externals/pi_swupdate/run_pi2_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make pi2_autoboot_defconfig
 ```
 
 * For the `CM4` using the `tryboot` mechanism:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on CM4 - Based on tryboot mechanism."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_cm4_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate cm4_tryboot_defconfig
+docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Data only to test tryboot mechanism on CM4." && \
+./externals/pi_swupdate/run_cm4_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make cm4_tryboot_defconfig
 ```
 
 * For the `CM4` using the `autoboot` mechanism:
 
 ``` shell
-# Data-only container
-docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on CM4 - Based on autoboot mechanism."
-```
-``` shell
-# Set the external mechanism and the default configuration
-./externals/pi_swupdate/run_cm4_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate cm4_autoboot_defconfig
+docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Data only to test autoboot mechanism on CM4." && \
+./externals/pi_swupdate/run_cm4_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
+./externals/pi_swupdate/run_cm4.sh make cm4_autoboot_defconfig
 ```
 
 
