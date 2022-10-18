@@ -1,0 +1,51 @@
+{
+  "name": "swupdate",
+  "version": "0.2.0",
+  "description": "Software Update for Embedded Systems Web Front End",
+  "main": "index.html",
+  "scripts": {
+    "htmlhint": "htmlhint *.html",
+    "standard": "standard --fix *.js",
+    "lint": "standard --fix && htmlhint && sass-lint -v scss/* && csslint css/*",
+    "build": "gulp build",
+    "package": "gulp package",
+    "clean": "gulp clean"
+  },
+  "author": "Stefan Herbrechtsmeier <stefan.herbrechtsmeier@weidmueller.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "csslint": "^1.0.5",
+    "del": "^3.0.0",
+    "eslint": "^5.11.1",
+    "gulp": "^4.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-gzip": "^1.4.2",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-tar": "^2.1.0",
+    "gulp-useref": "^3.1.6",
+    "htmlhint": "^0.10.1",
+    "minimist": "^1.2.6",
+    "sass": "^1.49.10",
+    "sass-lint": "^1.12.1",
+    "standard": "^12.0.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
+    "bootstrap": "^4.6.0",
+    "dropzone": "5.5.1",
+    "jquery": "^3.6.0",
+    "popper.js": "^1.14.6"
+  },
+  "standard": {
+    "ignore": [
+      "dist"
+    ]
+  }
+}
