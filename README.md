@@ -1,11 +1,11 @@
 ⚠️ This is a work in progress ⚠️
 
-TODO:
+**TODO:**
 
 - Test `tryboot` to automatically recover after bad updates (Currently the device just hangs until power is recycled).
 - The `autoboot` mechanism for the `Pi2` is using a set of files that are not expected.
 
-Pull request are welcome!
+Pull requests are welcome!
 
 
 # Description
@@ -59,7 +59,7 @@ docker build -t "advancedclimatesystems/buildroot" .
     - `./images/pi_swupdate/`: with the images to be flashed into your device.
     - Also, the `./target/pi_swupdate/` folder is provided to allow checking the building process.
 
-- To tell the `Builroot container` which `data-only container` to use, one helper script is provided (Described in the [next section][#building_the_images] in this document).
+- To tell the `Builroot container` which `data-only container` to use, one helper script is provided (Described in the [next section][building-the-images] in this document).
 
 - `name` will be used on the scripts to refer to this specific build.
 
@@ -86,7 +86,7 @@ docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/e
 ./externals/pi_swupdate/run_cm4.sh make cm4_defconfig
 ```
 
-Besides the above, other containers are provided if you just want pre-fabricated definitions to test and develop based on the `tryboot` and `autoboot` mechanisms. The resulting images don't offer `SWUpdate` support.
+Besides the above, other containers are provided if you just want pre-fabricated definitions to test/develop based on the `tryboot` and `autoboot` mechanisms. The resulting images don't offer `SWUpdate` support.
 
 * For the `Pi2` using the `tryboot` mechanism:
 
@@ -278,3 +278,4 @@ This software is licensed under MIT License.
 [uboot]:https://u-boot.readthedocs.io/en/latest/
 [swupdate]:https://sbabic.github.io/swupdate/swupdate.html
 [PINN_rebootp]:https://github.com/procount/pinn/tree/master/buildroot/package/rebootp
+[building-the-images]:https://github.com/maovidal/buildroot_pi_swupdate#building-the-images
