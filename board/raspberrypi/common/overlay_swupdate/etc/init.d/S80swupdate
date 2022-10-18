@@ -46,18 +46,22 @@ if [ "$current_set" -eq 100 ] ; then
 	# If an update was being performed for set A, as we are running on it,
 	# we will notify Suricatta the good news.
 	if [ -e /persistent/UpdatingSetA ] ; then
-		SURICATTA_ARGS="-c 2"
 		# Removes that flag
 		sh /etc/swupdate/flag_rem_writing_a.sh
+		# Sets the new partition to boot
+		sh /usr/bin/set_boot_partition_a.sh
+		# Prepares the message for the remote server
+		SURICATTA_ARGS="-c 2"
 		echo "SWUpdate will notify that the set A of partitions was updated correctly."
 	fi
 
 	# However, if the update was for the set B, means there was a failure that
 	# should be notified
 	if [ -e /persistent/UpdatingSetB ] ; then
-		SURICATTA_ARGS="-c 3"
 		# Removes that flag
 		sh /etc/swupdate/flag_rem_writing_b.sh
+		# Prepares the message for the remote server
+		SURICATTA_ARGS="-c 3"
 		echo "Error: SWUpdate will notify that the set B of partitions was NOT updated correctly."
 	fi
 
@@ -70,18 +74,22 @@ elif [ "$current_set" -eq 200 ] ; then
 	# If an update was being performed for set B, as we are running on it,
 	# we will notify Suricatta the good news.
 	if [ -e /persistent/UpdatingSetB ] ; then
-		SURICATTA_ARGS="-c 2"
 		# Removes that flag
 		sh /etc/swupdate/flag_rem_writing_b.sh
+		# Sets the new partition to boot
+		sh /usr/bin/set_boot_partition_b.sh
+		# Prepares the message for the remote server
+		SURICATTA_ARGS="-c 2"
 		echo "SWUpdate will notify that the set B of partitions was updated correctly."
 	fi
 
 	# However, if the update was for the set A, means there was a failure that
 	# should be notified
 	if [ -e /persistent/UpdatingSetA ] ; then
-		SURICATTA_ARGS="-c 3"
 		# Removes that flag
 		sh /etc/swupdate/flag_rem_writing_a.sh
+		# Prepares the message for the remote server
+		SURICATTA_ARGS="-c 3"
 		echo "Error: SWUpdate will notify that the set A of partitions was NOT updated correctly."
 	fi
 
