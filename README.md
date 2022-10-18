@@ -1,11 +1,13 @@
-⚠️ This is a work in progress ⚠️
+# ⚠️ This is a work in progress ⚠️
 
 **TODO:**
 
 - Test `tryboot` to automatically recover after bad updates (Currently the device just hangs until power is recycled).
 - The `autoboot` mechanism for the `Pi2` is using a set of files that are not expected.
+- Investigate possible corruptions of the filesystem, prevent them and provide a way to solve it.
 
-Pull requests are welcome!
+
+**Pull requests are welcome!**
 
 
 # Description

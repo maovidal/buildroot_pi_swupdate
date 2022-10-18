@@ -1,0 +1,39 @@
+software = {
+
+	version = "1.0";
+	description = "Update image for Raspberry Pi 2B to test SWUpdate";
+
+	RPi_2B = {
+
+		hardware-compatibility: [ "1.0" ];
+
+		partition_set = {
+			partition_set_a: {
+				images: (
+					{
+						filename = "boot_a.vfat";
+						device = "/dev/mmcblk0p2";
+					},
+					{
+						filename = "rootfs.ext4.gz";
+						compressed = "zlib";
+						device = "/dev/mmcblk0p5";
+					}
+				);
+			};
+			partition_set_b: {
+				images: (
+					{
+						filename = "boot_b.vfat";
+						device = "/dev/mmcblk0p3";
+					},
+					{
+						filename = "rootfs.ext4.gz";
+						compressed = "zlib";
+						device = "/dev/mmcblk0p6";
+					}
+				);
+			};
+		};
+	};
+};
