@@ -7,42 +7,31 @@ software = {
 
 		hardware-compatibility: [ "1.0" ];
 
-		boot = {
-			boot-a: {
+		partition_set = {
+			partition_set_a: {
 				images: (
 					{
-						filename = "boot_a.vfat.gz";
-						compressed = true;
+						filename = "boot_a.vfat";
+						// compressed = true;
 						device = "/dev/mmcblk0p2";
-					}
-				);
-			};
-			boot-b: {
-				images: (
-					{
-						filename = "boot_b.vfat.gz";
-						compressed = true;
-						device = "/dev/mmcblk0p3";
-					}
-				);
-			};
-		};
-
-		rootfs = {
-			rootfs-a: {
-				images: (
+					},
 					{
 						filename = "rootfs.ext4.gz";
-						compressed = true;
+						compressed = "true";
 						device = "/dev/mmcblk0p5";
 					}
 				);
 			};
-			rootfs-b: {
+			partition_set_b: {
 				images: (
 					{
+						filename = "boot_b.vfat";
+						// compressed = true;
+						device = "/dev/mmcblk0p3";
+					},
+					{
 						filename = "rootfs.ext4.gz";
-						compressed = true;
+						compressed = "true";
 						device = "/dev/mmcblk0p6";
 					}
 				);

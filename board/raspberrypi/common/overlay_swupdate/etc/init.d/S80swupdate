@@ -40,8 +40,7 @@ current_set=$?
 if [ "$current_set" -eq 100 ] ; then
 
 	# Determines that the next set to update should be B
-	BOOTFS=boot-b
-    ROOTFS=rootfs-b
+    PARTITION_SET=partition_set_b
 
 	# If an update was being performed for set A, as we are running on it,
 	# we will notify Suricatta the good news.
@@ -68,8 +67,7 @@ if [ "$current_set" -eq 100 ] ; then
 elif [ "$current_set" -eq 200 ] ; then
 
 	# Determines that the next set to update should be A
-	BOOTFS=boot-a
-    ROOTFS=rootfs-a
+    PARTITION_SET=partition_set_a
 
 	# If an update was being performed for set B, as we are running on it,
 	# we will notify Suricatta the good news.
@@ -111,7 +109,7 @@ start() {
 	# in case of any and the device identification. Also starts the web server.
 	# shellcheck disable=SC2086 # we need the word splitting
 	start-stop-daemon -b -q -m -S -p "$PIDFILE" -x "/usr/bin/$DAEMON" \
-		-- -f /etc/swupdate/swupdate.cfg -L -e boot,${BOOTFS} -e rootfs,${ROOTFS} -u "${SURICATTA_ARGS} -i \"${DEVICE_ID}\"" -w ""
+		-- -f /etc/swupdate/swupdate.cfg -L -e partition_set,${PARTITION_SET} -u "${SURICATTA_ARGS} -i \"${DEVICE_ID}\"" -w ""
 	status=$?
 	if [ "$status" -eq 0 ]; then
 		echo "OK"

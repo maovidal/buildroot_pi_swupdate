@@ -76,7 +76,7 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="CM4 to test SWUpdate ver 0.2.1"
+BR2_TARGET_GENERIC_ISSUE="CM4 to test SWUpdate ver 0.2.2"
 
 # Utilities
 BR2_PACKAGE_NANO=y                  # Edit files
@@ -103,7 +103,7 @@ BR2_TARGET_ROOTFS_EXT2_GZIP=y
 # To be able to read configuration on the format provided
 BR2_PACKAGE_LIBCONFIG=y
 
-# Web service requires them
+# Web service requirements
 BR2_PACKAGE_LIBCURL=y
 BR2_PACKAGE_JSON_C=y
 

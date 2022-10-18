@@ -27,10 +27,11 @@ genimage \
 # exit $?
 
 echo "********** SWUpdate Image Creation **********"
-echo "${PRODUCT_NAME}"
 
 PRODUCT_NAME="MyProduct"
 IMG_FILES="sw-description boot_a.vfat boot_b.vfat rootfs.ext4.gz"
+
+echo "Image for SWUpdate will be named: ${PRODUCT_NAME}.swu"
 
 SWDESCRIPTION_DIR=$(dirname $0)
 
