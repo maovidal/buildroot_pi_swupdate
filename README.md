@@ -199,10 +199,10 @@ Testing `autoboot` can be done as follows:
 1. Starting the pi once energized:
 The `Pi` will boot from 2 and use rootfs 5.
 
-2. Issue `set_b_partition.sh` and then `reboot` or `rebootp`
+2. Issue `set_boot_partition_b.sh` and then `reboot` or `rebootp`
 The `Pi` will boot from 3 and use rootfs 6.
 
-3. Issue `set_a_partition.sh` and then `reboot` or `rebootp`
+3. Issue `set_boot_partition_a.sh` and then `reboot` or `rebootp`
 The `Pi` will boot from 2 and use rootfs 5.
 
 4. Issue `rebootp 3`
