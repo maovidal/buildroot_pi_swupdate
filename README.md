@@ -46,7 +46,8 @@ docker build -t "advancedclimatesystems/buildroot" .
     - Also, the `target/pi_swupdate/x_y` folder is provided just to ease checking the building process.
 
 - `name` will be used on the scripts to refer to this specific build.
-- The commands below call 3 times those scripts to achieve this:
+
+- The commands below will:
 
     - Create a data-only container
     - Set the external mechanism and returns a the value to confirm it has been recorded
