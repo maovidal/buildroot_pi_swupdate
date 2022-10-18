@@ -1,0 +1,52 @@
+software = {
+
+	version = "1.0";
+	description = "Update image for Raspberry Pi CM4 to test SWUpdate";
+
+	RPi_CM4 = {
+
+		hardware-compatibility: [ "1.0" ];
+
+		boot = {
+			boot-a: {
+				images: (
+					{
+						filename = "boot_a.vfat.gz";
+						compressed = true;
+						device = "/dev/mmcblk0p2";
+					}
+				);
+			};
+			boot-b: {
+				images: (
+					{
+						filename = "boot_b.vfat.gz";
+						compressed = true;
+						device = "/dev/mmcblk0p3";
+					}
+				);
+			};
+		};
+
+		rootfs = {
+			rootfs-a: {
+				images: (
+					{
+						filename = "rootfs.ext4.gz";
+						compressed = true;
+						device = "/dev/mmcblk0p5";
+					}
+				);
+			};
+			rootfs-b: {
+				images: (
+					{
+						filename = "rootfs.ext4.gz";
+						compressed = true;
+						device = "/dev/mmcblk0p6";
+					}
+				);
+			};
+		};
+	};
+};

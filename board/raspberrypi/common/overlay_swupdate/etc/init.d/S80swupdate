@@ -1,0 +1,152 @@
+#!/bin/sh
+# By JMVA, VIDAL & ASTUDILLO Ltda, 2022
+# www.vidalastudillo.com
+
+#
+# Init Script for SWUpdate as a daemon
+# 
+# If running with the `start`` parameter it will:
+#
+# a. Serve a website to allow remote updates via browser.
+# b. Allow remote updates from a server.
+# c. Performs a permanent update on the boot system if an upgrade was completed.
+# d. Notify the results of previous updated.
+#
+# The update mechanism requires that once the device reach this point performs
+# the following:
+#
+# a. Evaluates if a Flag file inicating the set of partitions updated
+#    correspond to the actual set from where the device is running.
+# b. If the previous condition is positive, the boot is updated marking in
+#    the non-volatile memory to use the updated set of partitions for the next
+#    boots.
+# c. The results are notified to a remote server.
+#
+
+
+DAEMON="swupdate"
+PIDFILE="/var/run/$DAEMON.pid"
+
+# Determines the identification to provide to the remote upgrade server
+# ie. the Serial number of the device.
+DEVICE_ID=$(cat /sys/firmware/devicetree/base/serial-number)
+
+# Gets the current set of partitions
+sh /etc/swupdate/current.sh
+current_set=$?
+
+
+# Based on the current set of partitions where the device is running
+if [ "$current_set" -eq 100 ] ; then
+
+	# Determines that the next set to update should be B
+	BOOTFS=boot-b
+    ROOTFS=rootfs-b
+
+	# If an update was being performed for set A, as we are running on it,
+	# we will notify Suricatta the good news.
+	if [ -e /persistent/UpdatingSetA ] ; then
+		SURICATTA_ARGS="-c 2"
+		# Removes that flag
+		sh /etc/swupdate/flag_rem_writing_a.sh
+		echo "SWUpdate will notify that the set A of partitions was updated correctly."
+	fi
+
+	# However, if the update was for the set B, means there was a failure that
+	# should be notified
+	if [ -e /persistent/UpdatingSetB ] ; then
+		SURICATTA_ARGS="-c 3"
+		# Removes that flag
+		sh /etc/swupdate/flag_rem_writing_b.sh
+		echo "Error: SWUpdate will notify that the set B of partitions was NOT updated correctly."
+	fi
+
+elif [ "$current_set" -eq 200 ] ; then
+
+	# Determines that the next set to update should be A
+	BOOTFS=boot-a
+    ROOTFS=rootfs-a
+
+	# If an update was being performed for set B, as we are running on it,
+	# we will notify Suricatta the good news.
+	if [ -e /persistent/UpdatingSetB ] ; then
+		SURICATTA_ARGS="-c 2"
+		# Removes that flag
+		sh /etc/swupdate/flag_rem_writing_b.sh
+		echo "SWUpdate will notify that the set B of partitions was updated correctly."
+	fi
+
+	# However, if the update was for the set A, means there was a failure that
+	# should be notified
+	if [ -e /persistent/UpdatingSetA ] ; then
+		SURICATTA_ARGS="-c 3"
+		# Removes that flag
+		sh /etc/swupdate/flag_rem_writing_a.sh
+		echo "Error: SWUpdate will notify that the set A of partitions was NOT updated correctly."
+	fi
+
+else
+
+	# Decides to halt the system
+	echo "ERROR: The current partition is not the expected."
+	echo "The device will halt to prevent further damage."
+	halt
+
+fi
+
+
+start() {
+
+	printf 'Starting %s: ' "$DAEMON"
+	# The daemon will use a configuration file kepping track of the next set
+	# of partitions to update, notifying the remote server of previous results
+	# in case of any and the device identification. Also starts the web server.
+	# shellcheck disable=SC2086 # we need the word splitting
+	start-stop-daemon -b -q -m -S -p "$PIDFILE" -x "/usr/bin/$DAEMON" \
+		-- -f /etc/swupdate/swupdate.cfg -L -e boot,${BOOTFS} -e rootfs,${ROOTFS} -u "${SURICATTA_ARGS} -i \"${DEVICE_ID}\"" -w ""
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+	return "$status"
+
+}
+
+stop() {
+
+	printf 'Stopping %s: ' "$DAEMON"
+	start-stop-daemon -K -q -p "$PIDFILE"
+	status=$?
+	if [ "$status" -eq 0 ]; then
+		rm -f "$PIDFILE"
+		echo "OK"
+	else
+		echo "FAIL"
+	fi
+	return "$status"
+
+}
+
+restart() {
+
+	stop
+	sleep 1
+	start
+
+}
+
+case "$1" in
+
+    start|stop|restart)
+		"$1";;
+
+	reload)
+		# Restart, since there is no true "reload" feature.
+		restart;;
+        *)
+                echo "Usage: $0 {start|stop|restart|reload}"
+                exit 1
+
+esac
