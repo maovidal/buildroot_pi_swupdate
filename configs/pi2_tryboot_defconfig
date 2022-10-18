@@ -30,7 +30,7 @@ BR2_LINUX_KERNEL_NEEDS_HOST_OPENSSL=y
 BR2_PACKAGE_RPI_FIRMWARE=y
 BR2_PACKAGE_RPI_FIRMWARE_BOOTCODE_BIN=y
 BR2_PACKAGE_RPI_FIRMWARE_VARIANT_PI=y
-BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/config.txt"
+BR2_PACKAGE_RPI_FIRMWARE_CONFIG_FILE="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/pi2/config_base.txt"
 # BR2_PACKAGE_RPI_FIRMWARE_INSTALL_DTB_OVERLAYS is not set
 
 # Required tools to create the SD image
@@ -61,6 +61,9 @@ BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
 # Overlays
 BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay"
 
+# Provides a reboot variant that allows parameters (ie. boot partition, tryboot)
+BR2_PACKAGE_REBOOTP=y
+
 
 # ##############################################################################
 # Identification and development utilities
@@ -73,26 +76,13 @@ BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
 BR2_TARGET_GENERIC_HOSTNAME="MyDevice"
 
 # System banner
-BR2_TARGET_GENERIC_ISSUE="Pi2B to test tryboot mechanism ver 0.1.1"
+BR2_TARGET_GENERIC_ISSUE="Pi2B to test tryboot mechanism ver 0.2.0"
 
 # Utilities
-BR2_PACKAGE_NANO=y  # Edit files
-BR2_PACKAGE_DROPBEAR=y  # SSH
-BR2_PACKAGE_RSYNC=y  # Useful to receive files via SSH
+BR2_PACKAGE_NANO=y                  # Edit files
+BR2_PACKAGE_DROPBEAR=y              # SSH
+BR2_PACKAGE_RSYNC=y                 # Useful to receive files via SSH
 BR2_PACKAGE_DHCPCD=y
-BR2_PACKAGE_PARTED=y  # Parted, the GNU partition resizing program
+BR2_PACKAGE_PARTED=y                # Parted, the GNU partition resizing program
 BR2_PACKAGE_UTIL_LINUX=y
-BR2_PACKAGE_UTIL_LINUX_BINARIES=y  # Install the basic set of util-linux binaries, including lsblk
-
-BR2_PACKAGE_REBOOTP=y
-
-
-# ##############################################################################
-# SWUpdate
-# ##############################################################################
-
-# Do compress the ext2/3/4 filesystem with gzip
-# BR2_TARGET_ROOTFS_EXT2_GZIP=y # Seems to remove ext4?
-
-# Link Time Optimization (LTO) gives GCC the capability of dumping its internal representation (GIMPLE) to disk, so that all the different compilation units that make up a single executable can be optimized as a single module.
-# BR2_GCC_ENABLE_LTO=y
+BR2_PACKAGE_UTIL_LINUX_BINARIES=y   # Install the basic set of util-linux binaries, including lsblk

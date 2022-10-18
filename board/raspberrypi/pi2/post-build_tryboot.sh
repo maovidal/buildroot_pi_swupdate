@@ -26,6 +26,9 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config_b
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_a.txt ${BINARIES_DIR}/rpi-firmware_a/tryboot.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
+# Helpers to set a new boot partition
+install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/set_boot_partition_a.sh ${TARGET_DIR}/usr/bin/set_boot_partition_a.sh
+install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/set_boot_partition_b.sh ${TARGET_DIR}/usr/bin/set_boot_partition_b.sh
 
 # Mount partitions
 if [ -e ${TARGET_DIR}/etc/fstab ]; then
