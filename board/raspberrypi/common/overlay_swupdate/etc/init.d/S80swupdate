@@ -5,7 +5,7 @@
 #
 # Init Script for SWUpdate as a daemon
 # 
-# If running with the `start`` parameter it will:
+# If running with the `start` parameter it will:
 #
 # a. Serve a website to allow remote updates via browser.
 # b. Allow remote updates from a server.
