@@ -12,12 +12,12 @@ software = {
 				images: (
 					{
 						filename = "boot_a.vfat";
-						// compressed = true;
+						// compressed = "zlib";
 						device = "/dev/mmcblk0p2";
 					},
 					{
 						filename = "rootfs.ext4.gz";
-						compressed = "true";
+						compressed = "zlib";
 						device = "/dev/mmcblk0p5";
 					}
 				);
@@ -26,12 +26,12 @@ software = {
 				images: (
 					{
 						filename = "boot_b.vfat";
-						// compressed = true;
+						// compressed = "zlib";
 						device = "/dev/mmcblk0p3";
 					},
 					{
 						filename = "rootfs.ext4.gz";
-						compressed = "true";
+						compressed = "zlib";
 						device = "/dev/mmcblk0p6";
 					}
 				);
