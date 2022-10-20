@@ -59,7 +59,7 @@ BR2_TARGET_TZ_INFO=y
 BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_MDEV=y
 
 # Overlays
-BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay $(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/overlay_swupdate"
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/generic/overlay $(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/generic/overlay_swupdate"
 
 # Provides a reboot variant that allows parameters (ie. boot partition, tryboot)
 BR2_PACKAGE_REBOOTP=y
@@ -95,7 +95,7 @@ BR2_PACKAGE_UTIL_LINUX_BINARIES=y   # Install the basic set of util-linux binari
 # SWUpdate
 BR2_PACKAGE_SWUPDATE=y
 BR2_PACKAGE_SWUPDATE_INSTALL_WEBSITE=y
-BR2_PACKAGE_SWUPDATE_CONFIG="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/common/swupdate.config"
+BR2_PACKAGE_SWUPDATE_CONFIG="$(BR2_EXTERNAL_PISWU_CFG_PATH)/board/raspberrypi/generic/swupdate.config"
 
 # Do compress the ext2/3/4 filesystem with gzip
 BR2_TARGET_ROOTFS_EXT2_GZIP=y

@@ -11,7 +11,7 @@ tty1::respawn:/sbin/getty -L  tty1 0 vt100 # HDMI console' ${TARGET_DIR}/etc/ini
 fi
 
 # An indicator for the empty partition
-install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/empty ${BINARIES_DIR}/persistent/.dummy
+install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/generic/empty ${BINARIES_DIR}/persistent/.dummy
 
 # Base config.txt
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/config_base.txt ${BINARIES_DIR}/config_base.txt
@@ -27,8 +27,8 @@ install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_
 install -D -m 0644 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/pi2/tryboot_b.txt ${BINARIES_DIR}/rpi-firmware_b/tryboot.txt
 
 # Helpers to set a new boot partition
-install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/set_boot_partition_a.sh ${TARGET_DIR}/usr/bin/set_boot_partition_a.sh
-install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/common/set_boot_partition_b.sh ${TARGET_DIR}/usr/bin/set_boot_partition_b.sh
+install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/generic/set_boot_partition_a.sh ${TARGET_DIR}/usr/bin/set_boot_partition_a.sh
+install -m 0755 ${BR2_EXTERNAL_PISWU_CFG_PATH}/board/raspberrypi/generic/set_boot_partition_b.sh ${TARGET_DIR}/usr/bin/set_boot_partition_b.sh
 
 # Mount partitions
 if [ -e ${TARGET_DIR}/etc/fstab ]; then

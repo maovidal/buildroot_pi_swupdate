@@ -5,7 +5,7 @@
 - Test `tryboot` to automatically recover after bad updates (Currently the device just hangs until power is recycled).
 - The `autoboot` mechanism for the `Pi2` is using a set of files that are not expected.
 - Investigate possible corruptions of the filesystem, prevent them and provide a way to solve it.
-- The current `web-app` at `/board/raspberrypi/common/overlay_swupdate/var/www/swupdate/` is a copy of the one shipped with `SWUpdate 2021.04`. Investigate why a newer version can't be used. For reference, a copy from SWUpdate repo (from 22-10-18) is provided at the folder `swupdate_from_2022_10_18`.
+- The current `web-app` at `/board/raspberrypi/generic/overlay_swupdate/var/www/swupdate/` is a copy of the one shipped with `SWUpdate 2021.04`. Investigate why a newer version can't be used. For reference, a copy from SWUpdate repo (from 22-10-18) is provided at the folder `swupdate_from_2022_10_18`.
 
 
 **Pull requests are welcome!**
