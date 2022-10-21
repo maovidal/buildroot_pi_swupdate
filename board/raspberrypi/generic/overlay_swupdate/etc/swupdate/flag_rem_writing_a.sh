@@ -10,7 +10,7 @@
 
 # $ stores the exit code of the last command
 if [ $? -eq 0 ] ; then
-    rm -r /persistent/UpdatingSetA
+    rm -rf /persistent/UpdatingSetA
     # Forces an immediate disk update
     sync
     echo "Flag Removed: Updating Set A"
