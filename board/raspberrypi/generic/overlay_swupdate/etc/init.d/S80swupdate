@@ -32,7 +32,7 @@ PIDFILE="/var/run/$DAEMON.pid"
 DEVICE_ID=$(cat /sys/firmware/devicetree/base/serial-number)
 
 # Gets the current set of partitions
-sh /etc/swupdate/current.sh
+sh /etc/swupdate/current_partition.sh
 current_set=$?
 
 

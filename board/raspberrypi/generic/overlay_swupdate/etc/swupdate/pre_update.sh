@@ -14,7 +14,7 @@
 if [ $? -eq 0 ] ; then
 
     # Gets the current set of partitions
-    sh /etc/swupdate/current.sh
+    sh /etc/swupdate/current_partition.sh
     current_set=$?
 
     # Based on the current set of partitions where set a flag on the non

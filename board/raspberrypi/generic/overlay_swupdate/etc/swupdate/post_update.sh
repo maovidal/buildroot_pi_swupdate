@@ -11,7 +11,7 @@
 
 
 # Gets the current partition
-sh /etc/swupdate/current.sh
+sh /etc/swupdate/current_partition.sh
 current_partition=$?
 
 # Forces an immediate disk update
