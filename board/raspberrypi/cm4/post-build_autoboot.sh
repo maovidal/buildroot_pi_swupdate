@@ -1,7 +1,9 @@
 #!/bin/sh
 
-set -u
-set -e
+
+set -e  # Exit immediately if a command exits with a non-zero status
+set -u  # Treat unset variables as an error when substituting.
+
 
 # Add a console on tty1
 if [ -e ${TARGET_DIR}/etc/inittab ]; then
