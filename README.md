@@ -76,15 +76,15 @@ Below you'll find the commands to setup the data-only container for every option
 * For the `Pi2` with `SWUpdate` support:
 
 ``` shell
-docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on Pi2."  && \
+docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on Pi2."  && \
 ./externals/pi_swupdate/run_pi2.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
-./externals/pi_swupdate/run_cm4.sh make pi2_defconfig
+./externals/pi_swupdate/run_pi2.sh make pi2_defconfig
 ```
 
 * For the `CM4` with `SWUpdate` support:
 
 ``` shell
-docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Data only for SWUpdate on CM4." && \
+docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on CM4." && \
 ./externals/pi_swupdate/run_cm4.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
 ./externals/pi_swupdate/run_cm4.sh make cm4_defconfig
 ```
@@ -94,33 +94,33 @@ Besides the above, other containers are provided if you just want pre-fabricated
 * For the `Pi2` using the `tryboot` mechanism:
 
 ``` shell
-docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Data only to test tryboot mechanism on Pi2." && \
+docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on Pi2." && \
 ./externals/pi_swupdate/run_pi2_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
-./externals/pi_swupdate/run_cm4.sh make pi2_tryboot_defconfig
+./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_tryboot_defconfig
 ```
 
 * For the `Pi2` using the `autoboot` mechanism:
 
 ``` shell
-docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Data only to test autoboot mechanism on Pi2." && \
+docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on Pi2." && \
 ./externals/pi_swupdate/run_pi2_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
-./externals/pi_swupdate/run_cm4.sh make pi2_autoboot_defconfig
+./externals/pi_swupdate/run_pi2_autoboot.sh make pi2_autoboot_defconfig
 ```
 
 * For the `CM4` using the `tryboot` mechanism:
 
 ``` shell
-docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Data only to test tryboot mechanism on CM4." && \
+docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on CM4." && \
 ./externals/pi_swupdate/run_cm4_tryboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
-./externals/pi_swupdate/run_cm4.sh make cm4_tryboot_defconfig
+./externals/pi_swupdate/run_cm4_tryboot.sh make cm4_tryboot_defconfig
 ```
 
 * For the `CM4` using the `autoboot` mechanism:
 
 ``` shell
-docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Data only to test autoboot mechanism on CM4." && \
+docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on CM4." && \
 ./externals/pi_swupdate/run_cm4_autoboot.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
-./externals/pi_swupdate/run_cm4.sh make cm4_autoboot_defconfig
+./externals/pi_swupdate/run_cm4_autoboot.sh make cm4_autoboot_defconfig
 ```
 
 
@@ -151,16 +151,16 @@ Then you can use usual commands like this in the case of the `CM4` board based o
 ./externals/pi_swupdate/run_cm4_autoboot.sh make all
 ```
 
-In case you need to reload the default definitions, here there are the options for every definition variant (please note that this will ovewrite your changes): 
+In case you need to reload the default definitions, here there are the commands for every definition variant (please note that this will ovewrite your changes): 
 
 ``` shell
 ./externals/pi_swupdate/run_pi2.sh make pi2_defconfig
+./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_tryboot_defconfig
 ./externals/pi_swupdate/run_pi2_autoboot.sh make pi2_autoboot_defconfig
-./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_autoboot_defconfig
 
 ./externals/pi_swupdate/run_cm4.sh make cm4_defconfig
-./externals/pi_swupdate/run_cm4_autoboot.sh make cm4_tryboot_defconfig
 ./externals/pi_swupdate/run_cm4_tryboot.sh make cm4_tryboot_defconfig
+./externals/pi_swupdate/run_cm4_autoboot.sh make cm4_autoboot_defconfig
 ```
 
 
