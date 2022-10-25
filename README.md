@@ -67,7 +67,9 @@ git clone https://github.com/maovidal/buildroot_pi_swupdate externals/pi_swupdat
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-## 2. Setup each [data-only containers][data-only] for the board and mechanism you want to use. Please note that:
+## 2. Setup each [data-only containers][data-only] for the board and mechanism you want to use.
+
+Please note that:
 
 - You can setup all of them and even run them simultaneously (Determined by the amount of resources available on your hardware).
 
