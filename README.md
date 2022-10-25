@@ -29,7 +29,7 @@ When the device is running from one of those sets of partitions and an update is
 In case that the process is interrupted at any point before the last step the device will keep using the set of partitions that was not updated.
 
 
-**For the `CM4` it requires EEPROM updated to pieeprom-2022-10-18.bin at least**
+**For the `CM4` it requires EEPROM updated to `pieeprom-2022-10-18.bin` at least**
 
 
 ## Under the hood
@@ -48,13 +48,13 @@ The [`autoboot` mechanism][autoboot] and its option [tryboot_a_b][tryboot_a_b] a
 There are variants of images to try `autoboot` and `tryboot` with no `SWUpdate` on them.
 
 
-# Quick setup of the developing environment
+# Quick setup of the development environment
 
 Besides using this repo in your existing [Buildroot][buildroot] installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away and keep multiple and independent instances for different targets at the same time.
 
 Those are the instructions for the later case, as the ones to use your existing Buildroot installation are contained in Buildroot's documentation:
 
-1. Get the docker container for `Buildroot`:
+## 1. Get the docker container for `Buildroot`:
 
 ``` shell
 # Get a clone of [docker-buildroot][docker_buildroot], if not already present in your system:
@@ -67,7 +67,7 @@ git clone https://github.com/maovidal/buildroot_pi_swupdate externals/pi_swupdat
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-2. Setup each [data-only containers][data-only] for the board and mechanism you want to use. Please note that:
+## 2. Setup each [data-only containers][data-only] for the board and mechanism you want to use. Please note that:
 
 - You can setup all of them and even run them simultaneously (Determined by the amount of resources available on your hardware).
 
@@ -83,6 +83,10 @@ docker build -t "advancedclimatesystems/buildroot" .
 
 - `name` will be used on the scripts to refer to this specific build.
 
+
+### SWUpdate variants
+
+
 Below you'll find the commands to setup the data-only container for every option available. Those commands will:
 
     1. Create a data-only container
@@ -90,7 +94,7 @@ Below you'll find the commands to setup the data-only container for every option
     3. Set the default configuration
 
 
-* For the `Pi2` with `SWUpdate` support:
+#### For the `Pi2` with `SWUpdate` support:
 
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on Pi2."  && \
@@ -98,7 +102,7 @@ docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/e
 ./externals/pi_swupdate/run_pi2.sh make pi2_defconfig
 ```
 
-* For the `CM4` with `SWUpdate` support:
+#### For the `CM4` with `SWUpdate` support:
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on CM4." && \
@@ -106,9 +110,13 @@ docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/e
 ./externals/pi_swupdate/run_cm4.sh make cm4_defconfig
 ```
 
+
+### No SWUpdate variants
+
+
 Besides the above, other containers are provided if you just want pre-fabricated definitions to test/develop based on the `tryboot` and `autoboot` mechanisms. The resulting images don't offer `SWUpdate` support.
 
-* For the `Pi2` using the `tryboot` mechanism:
+#### For the `Pi2` using the `tryboot` mechanism:
 
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on Pi2." && \
@@ -116,7 +124,7 @@ docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroo
 ./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_tryboot_defconfig
 ```
 
-* For the `Pi2` using the `autoboot` mechanism:
+#### For the `Pi2` using the `autoboot` mechanism:
 
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on Pi2." && \
@@ -124,7 +132,7 @@ docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildro
 ./externals/pi_swupdate/run_pi2_autoboot.sh make pi2_autoboot_defconfig
 ```
 
-* For the `CM4` using the `tryboot` mechanism:
+#### For the `CM4` using the `tryboot` mechanism:
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on CM4." && \
@@ -132,7 +140,7 @@ docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroo
 ./externals/pi_swupdate/run_cm4_tryboot.sh make cm4_tryboot_defconfig
 ```
 
-* For the `CM4` using the `autoboot` mechanism:
+#### For the `CM4` using the `autoboot` mechanism:
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on CM4." && \
