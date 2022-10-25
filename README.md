@@ -1,38 +1,47 @@
-# ⚠️ This is a work in progress ⚠️
-
-**TODO:**
-
-- Investigate possible corruptions of the filesystem, prevent them and provide a way to solve it.
-- The current `web-app` at `/board/raspberrypi/generic/overlay_swupdate/var/www/swupdate/` is a copy of the one shipped with `SWUpdate 2021.04`. Investigate why a newer version can't be used. For reference, a copy from SWUpdate repo (from 22-10-18) is provided at the folder `swupdate_from_2022_10_18`.
-
-
-**Pull requests are welcome!**
-
-
 # Description
 
-The purpose of this repository is to implement a mechanism to update a device that allows it to return to a previous working state in case the update fails.
 
-The implemented approach considers:
+The purpose of this repository is to provide templates that implement a mechanism to update a device that allows it to return to a previous working state in case the update fails with these considerations:
 
 - The device provides a webpage at http://<your_device_ip>:8080 to receive a new image.
+
 - The device uses two redundant set of partitions, named A and B. Each set has a `boot` and a `rootfs`.
+
 - The images are generated using `buildroot 2022.08.1` which implements `SWUpdate 2022.05`.
+
 - The supported devices are `Raspberry Pi 2B` and `Raspberry Pi Compute Module 4`.
+
 
 When the device is running from one of those sets of partitions and an update is requested, the device will:
 
 1. Write the set of partitions that is not in use with the image received.
+
 2. Once completed, the device will restart to test the updated set of partitions.
+
 3. If it is able to boot, it will update a file that will tell it to use that set of partitions for the next boots.
+
 
 In case that the process is interrupted at any point before the last step the device will keep using the set of partitions that was not updated.
 
 
-**For the `CM4` it requires EEPROM updated to `pieeprom-2022-10-18.bin` at least**
+**⚠️ This is a continous work in progress ⚠️**
+
+
+This repo also serves as a starting point to test related improvements over its basic purpose. Currently the following is due to be solved:
+
+- Investigate how to prevent and deal with possible corruptions of the filesystem.
+
+- The current `web-app` at `/board/raspberrypi/generic/overlay_swupdate/var/www/swupdate/` is a copy of the one shipped with `SWUpdate 2021.04`. Investigate why a newer version can't be used. For reference, a copy from SWUpdate repo (from 22-10-18) is provided at the folder `swupdate_from_2022_10_18`.
+
+
+**For the `CM4` it requires EEPROM updated to `pieeprom-2022-10-18.bin` at least.**
+
+
+**🛠Pull requests are welcome!🛠**
 
 
 ## Under the hood
+
 
 [SWUpdate][swupdate] deploys a web page to receive the new image provided by the user and writes it to the device.
 
@@ -45,16 +54,20 @@ The [`autoboot` mechanism][autoboot] and its option [tryboot_a_b][tryboot_a_b] a
 
 ## Testing without SWUpdate
 
+
 There are variants of images to try `autoboot` and `tryboot` with no `SWUpdate` on them.
 
 
 # Quick setup of the development environment
 
+
 Besides using this repo in your existing [Buildroot][buildroot] installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away and keep multiple and independent instances for different targets at the same time.
 
 Those are the instructions for the later case, as the ones to use your existing Buildroot installation are contained in Buildroot's documentation:
 
+
 ## 1. Get the docker container for `Buildroot`:
+
 
 ``` shell
 # Get a clone of [docker-buildroot][docker_buildroot], if not already present in your system:
@@ -67,7 +80,9 @@ git clone https://github.com/maovidal/buildroot_pi_swupdate externals/pi_swupdat
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
+
 ## 2. Setup each [data-only containers][data-only] for the board and mechanism you want to use.
+
 
 Please note that:
 
@@ -98,13 +113,16 @@ Below you'll find the commands to setup the data-only container for every option
 
 #### - For the `Pi2` with `SWUpdate` support:
 
+
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on Pi2."  && \
 ./externals/pi_swupdate/run_pi2.sh make BR2_EXTERNAL=/root/buildroot/externals/pi_swupdate -s printvars VARS='BR2_EXTERNAL_PISWU_CFG_PATH' && \
 ./externals/pi_swupdate/run_pi2.sh make pi2_defconfig
 ```
 
+
 #### - For the `CM4` with `SWUpdate` support:
+
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/echo "Demo SWUpdate on CM4." && \
@@ -118,7 +136,9 @@ docker run -i --name br_output_PiSWU_CM4 advancedclimatesystems/buildroot /bin/e
 
 Besides the above, other containers are provided if you just want pre-fabricated definitions to test/develop based on the `tryboot` and `autoboot` mechanisms. The resulting images don't offer `SWUpdate` support.
 
+
 #### - For the `Pi2` using the `tryboot` mechanism:
+
 
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on Pi2." && \
@@ -126,7 +146,9 @@ docker run -i --name br_output_PiSWU_Pi2_tryboot advancedclimatesystems/buildroo
 ./externals/pi_swupdate/run_pi2_tryboot.sh make pi2_tryboot_defconfig
 ```
 
+
 #### - For the `Pi2` using the `autoboot` mechanism:
+
 
 ``` shell
 docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on Pi2." && \
@@ -134,7 +156,9 @@ docker run -i --name br_output_PiSWU_Pi2_autoboot advancedclimatesystems/buildro
 ./externals/pi_swupdate/run_pi2_autoboot.sh make pi2_autoboot_defconfig
 ```
 
+
 #### - For the `CM4` using the `tryboot` mechanism:
+
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroot /bin/echo "Demo to test tryboot mechanism on CM4." && \
@@ -142,7 +166,9 @@ docker run -i --name br_output_PiSWU_CM4_tryboot advancedclimatesystems/buildroo
 ./externals/pi_swupdate/run_cm4_tryboot.sh make cm4_tryboot_defconfig
 ```
 
+
 #### - For the `CM4` using the `autoboot` mechanism:
+
 
 ``` shell
 docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildroot /bin/echo "Demo to test autoboot mechanism on CM4." && \
@@ -152,6 +178,7 @@ docker run -i --name br_output_PiSWU_CM4_autoboot advancedclimatesystems/buildro
 
 
 # Building the images
+
 
 A small helper script for each option has been provided to ease the use of the containers:
 
@@ -193,6 +220,7 @@ In case you need to reload the default definitions, here there are the commands 
 
 # Using the images
 
+
 Once an image has been built it will be located in the folder `./images/pi_swupdate/` on your host (ie. `images/pi_swupdate/cm4_autoboot/sdcard.img`)  that can be flashed to the `Pi` following the official Raspberry Pi documentation.
 
 By default, once started, the `Pi` will provide:
@@ -207,6 +235,7 @@ You may want to use again `./check.sh` to see the new mountpoints available.
 
 
 ## Details about the definitions based on `tryboot`.
+
 
 The following partitions are created on the device's eMMC:
 
@@ -238,6 +267,7 @@ You can check that with `./check.sh` reports rootfs 6 as the mountpoint
 
 
 ## Details about the definitions based on `autoboot`.
+
 
 `autoboot.txt` is an undocumented mechanism of Raspberry Pi to boot from a particular partition.
 
@@ -280,6 +310,7 @@ You can check that with `./check.sh` reports rootfs 6 as the mountpoint
 
 
 # License
+
 
 This software is licensed under MIT License.
 
