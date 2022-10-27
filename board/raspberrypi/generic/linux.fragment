@@ -1,0 +1,14 @@
+# ##############################################################################
+# This is required for Kernel 5.15
+# Taken from:
+# https://lore.kernel.org/buildroot/20220926051956.3272067-1-buildroot@athaariq.my.id/T/
+# ##############################################################################
+
+
+# Dynamic CPU Clock
+CONFIG_CPU_FREQ_DEFAULT_GOV_POWERSAVE=n
+CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y
+
+# Fix Kernel Module won't Load
+CONFIG_MODULE_COMPRESS_XZ=n
+CONFIG_MODULE_COMPRESS_NONE=y

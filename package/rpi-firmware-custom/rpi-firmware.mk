@@ -4,7 +4,12 @@
 #
 ################################################################################
 
-# Kernel 5.15.74
+# To match Kernel 5.15.74
+# `vcgencmd version` reports:
+# Oct 18 2022 17:46:34 
+# Copyright (c) 2012 Broadcom
+# version 23aa699d0e70ed543c1ddcd17bed6446bfb6866e (clean) (release) (start)
+
 RPI_FIRMWARE_CUSTOM_VERSION = 42e091c8e7edb79b5a6b493daaea2485d621d9e5
 RPI_FIRMWARE_CUSTOM_SITE = $(call github,raspberrypi,firmware,$(RPI_FIRMWARE_CUSTOM_VERSION))
 RPI_FIRMWARE_CUSTOM_LICENSE = BSD-3-Clause
