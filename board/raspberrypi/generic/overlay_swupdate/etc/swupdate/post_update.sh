@@ -3,7 +3,7 @@
 # www.vidalastudillo.com
 
 #
-# Performs actions once SWUpdate has written the partitions
+# Performs actions once `SWUpdate` has written the partitions
 #
 
 

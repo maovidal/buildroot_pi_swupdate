@@ -10,7 +10,7 @@
 # a. Serve a website to allow remote updates via browser.
 # b. Allow remote updates from a server.
 # c. Performs a permanent update on the boot system if an upgrade was completed.
-# d. Notify the results of previous updated.
+# d. Notify the results of previous update.
 #
 # The update mechanism requires that once the device reach this point performs
 # the following:
