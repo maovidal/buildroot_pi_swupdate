@@ -73,11 +73,13 @@ git clone https://github.com/vidalastudillo/docker-buildroot
 cd docker-buildroot
 ```
 
-2. Clone a Buildroot source:
+2. Set up the Buildroot source:
 
 ```shell
-git clone https://git.buildroot.net/buildroot --branch=<version> ./buildroot
+./scripts/bootstrap.sh
 ```
+
+See [`BUILDROOT_VERSION`](https://github.com/vidalastudillo/docker-buildroot#buildroot-source-buildroot_version) in `docker-buildroot` for the configured fork and branch, or to use a different one.
 
 3. Clone this repo into `externals/pi_swupdate`:
 
